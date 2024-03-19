@@ -25,6 +25,7 @@ int getMost(int[], int);
 void sortList(list);
 int size(list);
 void deleteNoData(list);
+list getCommon(list, list);
 list makeEmpty(list l) {
     if (l != NULL) {
         deleteList(l);
@@ -76,6 +77,7 @@ int main() {
     insert(45, s2);
     insert(45, s2);
     insert(45, s2);
+
     removeDuplicated(s1);
     printf("S1 after sorting and removing duplicated  ");
     printList(s1);
@@ -93,6 +95,33 @@ int main() {
     printf("S2 reversed  ");
     printList(s2);
 
+    list l1 = makeEmpty(NULL);
+    list l2 = makeEmpty(NULL);
+    printf("\n=========================================\n");
+    insert(1, l1);
+    insert(2, l1);
+    insert(3, l1);
+    insert(4, l1);
+    insert(5, l1);
+    insert(6, l1);
+    insert(7, l1);
+    insert(8, l1);
+
+    insert(10, l2);
+    insert(20, l2);
+    insert(30, l2);
+    insert(40, l2);
+    insert(50, l2);
+    insert(60, l2);
+    insert(70, l2);
+    insert(5, l2);
+    insert(6, l2);
+    insert(7, l2);
+    insert(8, l2);
+
+    printf("the first common digit is : %d  \n", getCommon(l1,l2)->data);
+    concat(s2, s1);
+    printList(s2);
 
     return 0;
 }
@@ -152,8 +181,59 @@ void sortList(list l){
         p2->data = values[i];
     }
 }
+/*
+Example:
+          1 2 3 4 5 6 7 8 9
+            |
+10 20 30 40 |
+Example:
+1 2 3 4 5 6 7 8 9
+          |
+ 10 20 30 |
+Example::
+    1 2 3 4 5 6 7 8 9
+            |
+10 20 30 40 |
+*/
+list getCommon(list l1 , list l2){ 
+    if( l1 == NULL || l2 == NULL || isEmpty(l1)  || isEmpty(l2) ){
+        printf("funny ?");
+        return NULL;
+    }
+    int size1 = size(l1);
+    int totalSize = size(l1) - size(l2);
+        list p1 = l1->next;
+        list p2 = l2->next;
+        if (totalSize > 0)
+        {
+            for (int i = 0; i < totalSize; i++)
+            {
+                p1 = p1->next;
+            }
+    }
+    else if(totalSize < 0){
+        for (int i = 0; i < totalSize * -1; i++)
+        {
+            p2 = p2->next;
+        }
+    }
+    
+    for (int i = 0; i < size1; i++)
+    {
+        if(p2->data == p1->data)
+            return p2;
+        p1 = p1->next;
+        p2 = p2->next;
+    }
+    printf("no match");
+    return NULL;
+}
 
 void reverseLinkedList(struct node *s){
+    if(s == NULL){
+        printf("funny ?");
+        close(0);
+    }
     list p1 = s->next;
     if(p1 == NULL)
         printf("Empty List");
@@ -171,6 +251,10 @@ void reverseLinkedList(struct node *s){
 }
 
 void removeDuplicated(list s1) {
+    if(s1 == NULL || isEmpty(s1)){
+        printf("funny ?");
+        close(0);
+    }
       list p = s1->next;
     while (p != NULL && p->next != NULL)
     {
@@ -222,6 +306,10 @@ int recursionDisjoint(list s1, list s2) {
 
 
 void concat(list s1, list s2) {
+    if(s1 == NULL || s2 == NULL || isEmpty(s1) || isEmpty(s2) ){
+        printf("funny ?");
+        close(0);
+    }
     list tape = s1;
     while (tape->next != NULL) {
         tape = tape->next;
