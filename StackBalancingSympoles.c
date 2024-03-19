@@ -94,10 +94,25 @@ void printStack(stack s){
     }
    
 }
-//, ')' , '{' , '}' , '<' 
+
 int main(){
-    char c[50] = {"<>{(})()"};
-    printf("%d", isAppropriate(c));
+    char c1[50] = {"<>{(})()"};
+    printf("<>{(})() :               %d\n", isAppropriate(c1));
+    char c2[50] = {"<>({<[]>})<>(){}"};
+    printf("=========================== \n");
+    printf("<>({<[]>})<>(){}  :      %d\n", isAppropriate(c2));
+    char c3[50] = {"<>({<[]>})<>(){}("};
+    printf("=========================== \n");
+    printf("<>({<[]>})<>(){}(  :     %d\n", isAppropriate(c3));
+    char c4[50] = {"<({<[]>})<>(){}()"};
+    printf("=========================== \n");
+    printf("<({<[]>})<>(){}(  :      %d\n", isAppropriate(c4));
+    char c5[50] = {"<>({<[]>})<>(){}({)}"};
+    printf("===========================\n");
+    printf("<>({<[]>})<>(){}({)}  :  %d\n", isAppropriate(c5));
+    char c6[50] = {"<>({<[]>})<>(){}({}){({<>})}"};
+    printf("===========================\n");
+    printf("<>({<[]>})<>(){}({}){({<>})}  :  %d\n", isAppropriate(c6));
 
     return 0;
 }
@@ -106,19 +121,24 @@ int isAppropriate(char c [] ){
     stack s = creatStack();
     int i = 0;
     while(c[i] != '\0'){
-        push(c[i],s);
+        // Just to look out for the pracitce , if the user entetred any thing else the stasck won't gaf ;
+        if(c[i] == ')' || c[i] == ']' || c[i] == '}' || c[i] == '>' || c[i] == '(' || c[i] == '[' || c[i] == '{' || c[i] == '<'){
+            push(c[i],s);
              char c1 = c[i];
              if (c[i] == ')' || c[i] == ']' || c[i] == '}' || c[i] == '>'){
                  pop(s);
+                 // if the sympole has it's close it will cmove on ;
                  if(isItsClose(getTop(s) , c1)){
                 pop(s);
             }
+                else
+                break;
             }
+        }
             i++;
     }
     return (isEmpty(s)) ? 1 : 0;
 }
-
 int isItsClose(char c1 , char c2){
     return ((c1 == '(' && c2 == ')') || (c1 == '[' && c2 == ']') || (c1 == '{' && c2 == '}') || (c1 == '<' && c2 == '>'))? 1 : 0;
 }
