@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -754,3 +755,6 @@ while(p != NULL){
 }
 return count ;
 }
+=======
+
+>>>>>>> e053799438b52238344b6784363c8ef5f5ad28e3
