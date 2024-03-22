@@ -107,19 +107,15 @@ int main() {
     insert(7, l1);
     insert(8, l1);
 
-    insert(10, l2);
-    insert(20, l2);
-    insert(30, l2);
-    insert(40, l2);
-    insert(50, l2);
-    insert(60, l2);
-    insert(70, l2);
+    insert(1, l2);
+    insert(2, l2);
+    insert(3, l2);
+    insert(4, l2);
     insert(5, l2);
-    insert(6, l2);
     insert(7, l2);
-    insert(8, l2);
+    l2->track->next = find(5, l1);
 
-    printf("the first common digit is : %d  \n", getCommon(l1,l2)->data);
+    printf("the first common digit is : %d  \n", getCommon(l1,l2)->next->data);
     concat(s2, s1);
     printList(s2);
 
@@ -196,10 +192,6 @@ Example::
 10 20 30 40 |
 */
 list getCommon(list l1 , list l2){ 
-    if( l1 == NULL || l2 == NULL || isEmpty(l1)  || isEmpty(l2) ){
-        printf("funny ?");
-        return NULL;
-    }
     int size1 = size(l1);
     int totalSize = size(l1) - size(l2);
         list p1 = l1->next;
@@ -217,11 +209,14 @@ list getCommon(list l1 , list l2){
             p2 = p2->next;
         }
     }
-    
+
     for (int i = 0; i < size1; i++)
     {
-        if(p2->data == p1->data)
+        if(p2 == p1){
+            printf("    %d   ", p2->data);
             return p2;
+        }
+            
         p1 = p1->next;
         p2 = p2->next;
     }
@@ -318,10 +313,6 @@ void concat(list s1, list s2) {
     free(s2);
 }
 
-list merge(list s1 , list s2){
-    list p1 
-}
-
 int getMost(int array[] , int size){
     int max = array[0] ;
         for(int i=1 ; i<size ; i++){
@@ -348,14 +339,14 @@ void insert(int x, list l) {
     temp->data = x;
 };
 
-void deleteByIndex(list l , int index){
-    list p = l->next;
-    for (int i = 0; i < index - 1; i++)
-    {
-        p = p->next;
-    }
-    Delete(p);
-}
+// void deleteByIndex(list l , int index){
+//     list p = l->next;
+//     for (int i = 0; i < index - 1; i++)
+//     {
+//         p = p->next;
+//     }
+//     Delete(p);
+// }
 
 int isEmpty(list l) {
     return l->next == NULL;
