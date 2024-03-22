@@ -318,6 +318,10 @@ void concat(list s1, list s2) {
     free(s2);
 }
 
+list merge(list s1 , list s2){
+    list p1 
+}
+
 int getMost(int array[] , int size){
     int max = array[0] ;
         for(int i=1 ; i<size ; i++){
@@ -343,6 +347,15 @@ void insert(int x, list l) {
     temp->next = NULL;
     temp->data = x;
 };
+
+void deleteByIndex(list l , int index){
+    list p = l->next;
+    for (int i = 0; i < index - 1; i++)
+    {
+        p = p->next;
+    }
+    Delete(p);
+}
 
 int isEmpty(list l) {
     return l->next == NULL;
