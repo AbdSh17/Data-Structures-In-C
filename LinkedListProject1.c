@@ -179,19 +179,7 @@ differential equation,math331,122,55
     printCourse(studentArray[4]);
     return 0;
 
-    /*
-abd alraheem shuaibi#1220148#math331#comp133#encs130#comp333#comp242 ;
-saleh Shawer#1230128#comp242#comp133#encs130#comp333#math331
-Abd awalmeh#1221199#comp243#comp133#encs130#comp333#math331
-Nabeel swafteh#1220003#math331#comp333#encs130#comp133#comp242
 
-
-data structer,comp242,122,55 ;
-c-programin,comp133,122,55
-digital,encs130,122,55
-data base,comp333,122,55
-differential equation,math331,122,55
-*/
 }
 
 //===================================================Main===================================================
