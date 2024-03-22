@@ -79,24 +79,24 @@ if(l == NULL)
 }
 // Node to make an emoty student ;
 studentList makeEmptyStudent(studentList l){
-if(l != NULL){
-   deleteStudentList(l);
+    if(l != NULL){
+        deleteStudentList(l);
    }
-l = (studentList)malloc(sizeof(studentNode)) ;
-if(l == NULL)
-    printf("No space in the memory wtf");
-    l->next = NULL ;
-    l->track = l;
-    return l ;
+   l = (studentList)malloc(sizeof(studentNode));
+   if (l == NULL)
+       printf("No space in the memory wtf");
+   l->next = NULL;
+   l->track = l;
+   return l;
 }
 // Node to make an emoty normal List ;
 struct node *makeEmpty(struct node *l){
-if(l != NULL){
-   deleteList(l);
+    if(l != NULL){
+        deleteList(l);
    }
 l = (list)malloc(sizeof(struct node)) ;
-if(l == NULL)
-    printf("No space in the memory");
+    if(l == NULL)
+        printf("No space in the memory");
     l->next = NULL ;
     l->track = l;
     return l ;
@@ -132,7 +132,7 @@ differential equation,math331,122,55
 
     insertStudent("abd alraheem shuaibi#1210148#math331#comp133#encs130#comp333#comp242", student);
     insertStudent("saleh Shawer#1220128#comp242#comp133#encs130#comp333#math331", student);
-    insertStudent("Abd awalmeh#1221199#comp243#comp133#encs130#comp333#math331", student);
+    insertStudent("Abd sawalmeh#1221199#comp243#comp133#encs130#comp333#math331", student);
     insertStudent("Nabeel swafteh#1210003#math331#comp333#encs130#comp133#comp242", student);
     
 
@@ -259,16 +259,21 @@ void sortCourse(studentList l){
     sortArray(values, size);
     studentList l1 = makeEmptyStudent(NULL);
     studentList p1 = l1;
-    for (int i = 0; i < size; i++ , p1 = p1->next)
+    studentList p2 = l;
+    //printf("\n\n================================================\n\n");
+    //l = makeEmptyStudent(l);
+    for (int i = 0; i < size; i++, p1 = p1->next)
     {
         studentList temp = makeEmptyStudent(NULL);
         copyStudent(temp, findID(values[i], l));
         p1->next = temp;
     }
-    studentList p2 = l; 
+    //studentList p2 = l; 
+    //printf("\n\n================================================\n\n");
     l->next = l1->next;
+    l->track = l1->track;
     free(values);
-    //deleteStudentList(p2);
+    //deleteStudentList(p2->next);
 }
 
 // insert normal list ;
@@ -717,7 +722,8 @@ while(! isLast(p,l))
 }
 
 void deleteStudentList(studentList l){
-studentList p ;
+studentList p = l->next;
+l->next = NULL;
 while(p->next != NULL)
 {
     studentList temp = p ;
