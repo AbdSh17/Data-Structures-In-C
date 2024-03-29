@@ -20,6 +20,11 @@ void DisposeStack(stack);
 int isOperation(char);
 int getRseult(int, int, char);
 int postFix(char *);
+int isOperationInfex(char);
+void printArray(char[]);
+int power(char);
+int priority(char, char);
+void postFixConverter(char[], int);
 int isEmpty(stack s){
     return s->next == NULL;
 }
@@ -55,6 +60,7 @@ void pop(stack s){
         s->next = s->next->next;
         free(p);
     }
+    
 }
 
 /*
@@ -99,8 +105,10 @@ void printStack(stack s){
 //=========================================main===========================================================
 int main(){
     char c[30] = "1234+*+" ;
-
-    printf("%d  ", postFix(c));
+    char c1[30] = "(a+(b*c))+(((d*e)+f)*g)" ;
+    int size = sizeof(c1) / sizeof(c1[0]);
+    postFixConverter(c1 , size);
+    printf("\n%d  ", postFix(c));
 }
 //=========================================main===========================================================
 
@@ -147,24 +155,96 @@ int isOperation(char c){
     return (c == '+' || c == '-' || c == '*' || c == '/') ? 1 : 0;
 }
 
-/*
-int getRseult(char c1 ,char c2 , char c3){
-    switch (c3)
+void postFixConverter(char c1 [] , int size){
+    stack s = creatStack();
+    char c2[size];
+    int i = 0;
+    int j = 0;
+    while (c1[i] != '\0')
     {
-    case '+':
-        return c1 + c2 - 2 * '0';
-    case '-':
-        return c1 - c2 ;
-    case '*':
-        return ( (c2 - '0') *  (c1 - '0') );
-    case '/':
-        return ( (c1 - '0')  / (c2 - '0') );
-    default:
-        printf("Wrong operation");
-        break;
+        // if it's not an operation drop it directly ;
+        if(!isOperationInfex(c1[i])){
+            c2[j] = c1[i];
+            j++;
+        }
+        // if it was a close Parentheses drop and pop it till the open Parentheses ;
+        else if(c1[i] == ')'){
+            while (getTop(s) != '(')
+            {
+                c2[j] = getTop(s);
+                pop(s);
+                j++;
+            }
+            pop(s);
+        }
+        // if it has the priority push it into the stack ;
+        else if(priority(c1[i] , getTop(s))){
+            push(c1[i], s);
+        }
+        // if it doesn't has a priority drop the previous operation and push it into the stack
+        else{
+            c2[j] = getTop(s);
+            pop(s);
+            push(c1[i], s);
+            j++;
+        }
+        i++;
     }
-    return 0;
+    //to close the String
+    c2[j] = '\0';
+    i = 0;
+    //Drop the remain in the stack
+    while (!isEmpty(s))
+    {
+        c2[j] = getTop(s);
+        pop(s);
+        j++;
+    }
+    c2[j] = '\0';
+    printArray(c2);
 }
 
-*/
+int isOperationInfex(char c1){
+    return (c1 == '+' || c1 == '-' || c1 == '*' || c1 == '/' || c1 == '^' || c1 == '(' || c1 == ')') ? 1 : 0;
+}
+
+void printArray(char c [] ){
+    int i = 0;
+    while (c[i] != '\0')
+    {
+        printf("%c  ", c[i]);
+        i++;
+    }
+}
+int priority(char c1 ,char c2){
+    //if it was on the top don't give it priority
+    if(c2 == '(')
+        return 1;
+    //decide if the power has a priority or not
+    if(power(c1) <= power(c2))
+    return 0;
+    return 1;
+}
+int power(char c) {
+    int operation = 0;
+    switch (c) {
+        case '(':
+            operation = 4;
+            break;
+        case '^':
+            operation = 3;
+            break;
+        case '*':
+        case '/':
+            operation = 2;
+            break;
+        case '+':
+        case '-':
+            operation = 1;
+            break;
+        default:
+            operation = 0;
+    }
+    return operation;
+}
 
