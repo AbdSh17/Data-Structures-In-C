@@ -62,3 +62,10 @@ void printStackArray(stackArray s)
         printf("%d  ", s->array[i]);
     }
 }
+
+// int main()
+// {
+//     stackArray s = makeEmptyStackArray(10) // size ;
+//     // Use the remain functions ;
+//     return 0;
+// }
