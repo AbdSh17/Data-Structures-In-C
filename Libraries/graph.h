@@ -101,3 +101,24 @@ void printVertexEdges(vertex v)
         e = e->next;
     }
 }
+
+/*
+
+int main()
+{
+    vertex v1 = makeGraph(1);
+    vertex v2 = makeGraph(2);
+    vertex v3 = makeGraph(3);
+    vertex v4 = makeGraph(4);
+
+    makeEdge(v1, v2);
+    makeEdge(v2, v4);
+    makeEdge(v4, v1);
+    makeEdge(v3, v2);
+    
+
+    
+    return 0;
+}
+
+*/
