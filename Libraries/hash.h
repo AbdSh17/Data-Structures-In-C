@@ -121,3 +121,13 @@ void printHash(hash h)
         printf("%-5d:  %-5d\n", i, h->array[i]);
     }
 }
+
+/*
+int main()
+{
+    // You can see the two arrays in the top of the code to check the size changes
+    hash h = MakeEmptyHash();
+    // Use the remain functions ;
+    return 0;
+}
+*/
