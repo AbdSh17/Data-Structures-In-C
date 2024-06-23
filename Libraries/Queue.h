@@ -82,3 +82,12 @@ void printQueue(queue q)
     }
     free(save);
 }
+/*
+int main()
+{
+    queue q = makeEmptyQueue(NULL);
+    // Use the remain functions ;
+    return 0;
+}
+
+*/
