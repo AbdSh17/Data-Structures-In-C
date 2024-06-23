@@ -88,3 +88,16 @@ void deleteList(int x, list l)
     d->previous->next = d->next ;
     free(d);
 }
+
+/*
+
+int main()
+{
+    list l = makeEmptyList(NULL);
+    // Use the remain functions ;
+    return 0;
+}
+
+
+*/
+
