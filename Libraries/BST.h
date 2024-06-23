@@ -212,3 +212,14 @@ void printTreePreOrder(bst t)
         printTreePreOrder(t->right);
     }
 }
+
+/*
+int main()
+{
+    bst t = insertTree(5, NULL);
+    insertTree(6, t);
+    insertTree(3, t);
+    // Use the remain functions ;
+    return 0;
+}
+*/
