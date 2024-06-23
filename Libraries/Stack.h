@@ -77,3 +77,12 @@ void printStack(stack s)
     }
     free(save);
 }
+/*
+int main()
+{
+    stack s = makeEmptyStack(NULL);
+    // Use the remain functions ;
+    return 0;
+}
+
+*/
