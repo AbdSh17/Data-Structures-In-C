@@ -90,3 +90,15 @@ void printMaxHeap(maxHeap h)
         printf("%-5d:  %-5d\n", i, h->array[i]);
     }
 }
+
+/*
+
+int main()
+{
+    // heap size is fixed at 100 ;
+    maxHeap h = makeEmptyMaxHeap();
+    // Use the remain functions ;
+    return 0;
+}
+
+*/
