@@ -1,0 +1,6 @@
+Hebron|Dura|100000
+Hebron|Halhul|40000
+Hebron|Hebron|200000
+Nablus|Osarin|2000
+Beit Lahem|Al-Hader|3000
+Jericho|Al Auja|5000
