@@ -23,4 +23,4 @@ This repository contains implementations of main data structures using the C pro
   - Project pdf
 
 # Credits
-- [Adbalraheem Shuaibi](https://github.com/AbdSh17)
+- [Abdalraheem Shuaibi](https://github.com/AbdSh17)
