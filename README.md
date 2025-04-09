@@ -17,6 +17,7 @@ This repository contains implementations of main data structures using the C pro
   - Graphs
   - Hash Tables
   - Heaps (min & max)
+
 - Projects
   pre 4 projects for the university
   - Code with comments
